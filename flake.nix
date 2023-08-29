@@ -10,7 +10,7 @@
   outputs = inputs@{ nixpkgs, home-manager, ... }: {
     nixosConfigurations = {
       # TODO please change the hostname to your own
-      hera = nixpkgs.lib.nixosSystem {
+      ion = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./configuration.nix
