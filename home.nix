@@ -145,7 +145,7 @@
     OVMF
     libguestfs
     dmg2img
-    # virt-manager
+    virt-manager
 
     #### Archive management ####
     p7zip
