@@ -1,25 +1,48 @@
-{ pkgs, ... }:
-
-let
-  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
-    export __NV_PRIME_RENDER_OFFLOAD=1
-    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
-    export __GLX_VENDOR_LIBRARY_NAME=nvidia
-    export __VK_LAYER_NV_optimus=NVIDIA_only
-    exec "$@"
-  '';
-in
+{ config, lib, pkgs, ... }:
 {
-  environment.systemPackages = [ nvidia-offload ];
+  # Enable OpenGL
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
 
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia.prime = {
-    offload.enable = true;
+  # Load nvidia driver for Xorg and Wayland
+  services.xserver.videoDrivers = ["nvidia"];
 
-    # Bus ID of the Intel GPU. You can find it using lspci, either under 3D or VGA
-    amdgpuBusId = "PCI:6:0:0";
+  hardware.nvidia = {
 
-    # Bus ID of the NVIDIA GPU. You can find it using lspci, either under 3D or VGA
-    nvidiaBusId = "PCI:1:0:0";
+    # Modesetting is needed most of the time
+    modesetting.enable = true;
+
+	  # Enable power management (do not disable this unless you have a reason to).
+	  # Likely to cause problems on laptops and with screen tearing if disabled.
+	  powerManagement.enable = true;
+
+    # Enable the Nvidia settings menu,
+	  # accessible via `nvidia-settings`.
+    nvidiaSettings = true;
+
+    # Optionally, you may need to select the appropriate driver version for your specific GPU.
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+    modesetting.enable = true;
+
+    # Use the NVidia open source kernel module (which isn't “nouveau”).
+    # Support is limited to the Turing and later architectures. Full list of
+    # supported GPUs is at:
+    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
+    # Only available from driver 515.43.04+
+    open = false;
+
+    prime = {
+      reverseSync.enable = true;
+      # Enable if using an external GPU
+      allowExternalGpu = false;
+
+	  # Make sure to use the correct Bus ID values for your system!
+      amdgpuBusId = "PCI:6:0:0";
+      nvidiaBusId = "PCI:1:0:0";
+    };
   };
 }
