@@ -98,7 +98,7 @@
   users.users.max = {
     isNormalUser = true;
     description = "Max";
-    extraGroups = [ "networkmanager" "wheel" "docker" "kvm" "libvrt" "input" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "libvrt" "input" "libvirtd" "kvm" "qemu-libvirtd" ];
     shell = "/etc/profiles/per-user/max/bin/zsh";
     packages = with pkgs; [ ];
   };
@@ -166,6 +166,15 @@
      atomix # puzzle game
    ]);
 
+    virtualisation = {
+      libvirtd = {
+        enable = true;
+        qemuOvmf = true;
+        qemuSwtpm = true;
+      };
+    };
+
+    environment.sessionVariables.LIBVIRT_DEFAULT_URI = [ "qemu:///system" ];
 
   # List services that you want to enable:
   programs.steam.enable = true;

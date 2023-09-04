@@ -142,7 +142,7 @@
 
     #### Virtualization ####
     qemu
-    OVMF
+    OVMFFull
     libguestfs
     dmg2img
     virt-manager
