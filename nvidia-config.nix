@@ -26,8 +26,6 @@
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.stable;
 
-    modesetting.enable = true;
-
     # Use the NVidia open source kernel module (which isn't “nouveau”).
     # Support is limited to the Turing and later architectures. Full list of
     # supported GPUs is at:
