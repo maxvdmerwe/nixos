@@ -169,8 +169,8 @@
     virtualisation = {
       libvirtd = {
         enable = true;
-        qemuOvmf = true;
-        qemuSwtpm = true;
+        qemu.Ovmf.enable = true;
+        qemu.Swtpm.enable = true;
       };
     };
 
