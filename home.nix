@@ -146,6 +146,7 @@
     libguestfs
     dmg2img
     virt-manager
+    libvirt
 
     #### Archive management ####
     p7zip
