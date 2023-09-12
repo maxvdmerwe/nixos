@@ -145,6 +145,7 @@
     cfs-zen-tweaks # Kernal tweaks to make system feel more responsive at the cost of throughput
     screen # Allow terminal tasks to run in background
     tailscale # Remote wireguard based p2p vpn
+    libimobiledevice # iOS Device libaries
   ];
 
    environment.gnome.excludePackages = (with pkgs; [
@@ -169,8 +170,8 @@
     virtualisation = {
       libvirtd = {
         enable = true;
-        qemu.Ovmf.enable = true;
-        qemu.Swtpm.enable = true;
+        qemu.ovmf.enable = true;
+        qemu.swtpm.enable = true;
       };
     };
 
@@ -185,6 +186,7 @@
   #services.teamviewer.enable= true;
   hardware.ledger.enable = true;
   hardware.bluetooth.disabledPlugins = [ "avrcp" ];
+  services.usbmuxd.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;

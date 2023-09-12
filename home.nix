@@ -63,7 +63,7 @@
     #discord
 
     #### Spotify ####
-    #spotify
+    spotify
 
     #### Telegram ####
     #telegram-desktop
