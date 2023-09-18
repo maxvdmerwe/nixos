@@ -22,18 +22,18 @@
   boot.initrd.luks.devices."luks-fb4fb2f5-9adc-41f3-959c-4fc6b488f6e6".keyFile = "/crypto_keyfile.bin";
 
 
-  # SSHFS mounts
-  fileSystems."/mnt/terra" =
-    { device = "max@10.0.0.3:/mnt/terra";
-      fsType = "fuse.sshfs";
-      options = [ "x-systemd.automount" "_netdev" "users" "idmap=user" "IdentityFile=/home/max/.ssh/max-a17-lux" "allow_other" "reconnect"];
-    };
+  # # SSHFS mounts
+  # fileSystems."/mnt/terra" =
+  #   { device = "max@10.0.0.3:/mnt/terra";
+  #     fsType = "fuse.sshfs";
+  #     options = [ "x-systemd.automount" "_netdev" "users" "idmap=user" "IdentityFile=/home/max/.ssh/max-a17-lux" "allow_other" "reconnect"];
+  #   };
 
-  fileSystems."/mnt/ares" =
-    { device = "max@10.0.0.2:/mnt/ares";
-      fsType = "fuse.sshfs";
-      options = [ "x-systemd.automount" "_netdev" "users" "idmap=user" "IdentityFile=/home/max/.ssh/max-a17-lux" "allow_other" "reconnect"];
-    };
+  # fileSystems."/mnt/ares" =
+  #   { device = "max@10.0.0.2:/mnt/ares";
+  #     fsType = "fuse.sshfs";
+  #     options = [ "x-systemd.automount" "_netdev" "users" "idmap=user" "IdentityFile=/home/max/.ssh/max-a17-lux" "allow_other" "reconnect"];
+  #   };
 
   # Define your hostname
   networking.hostName = "ursa";

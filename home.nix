@@ -147,6 +147,8 @@
     dmg2img
     virt-manager
     libvirt
+    quickemu
+    quickgui
 
     #### Archive management ####
     p7zip
